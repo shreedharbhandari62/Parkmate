@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2018 at 04:13 AM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 7.2.7
+-- Generation Time: Nov 02, 2020 at 04:45 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.2.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -58,7 +57,7 @@ CREATE TABLE `tbl_booking` (
   `location` varchar(255) DEFAULT NULL,
   `number` varchar(255) DEFAULT NULL,
   `contact` varchar(20) NOT NULL,
-  `entry_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `entry_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `amount` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -80,7 +79,13 @@ INSERT INTO `tbl_booking` (`book_id`, `type`, `location`, `number`, `contact`, `
 (31, 'two', '5', '54321', '9823124320', '2018-12-07 14:50:43', NULL),
 (32, 'two', '5', '2312w', '9841204411', '2018-12-07 14:50:50', NULL),
 (33, 'two', '5', 'ba10pa6254', '9841204411', '2018-12-07 14:51:05', NULL),
-(34, 'two', '4', 'ba10pa6254', '9841204411', '2018-12-07 16:01:27', '10');
+(34, 'two', '4', 'ba10pa6254', '9841204411', '2018-12-07 16:01:27', '10'),
+(36, 'two', '6', 'bapa123', '9841204411', '2019-06-19 14:33:57', '10'),
+(37, 'four', '6', 'bapa1234', '9841204411', '2019-06-19 14:36:41', '20'),
+(38, 'four', '6', 'bapa1234', '8219738912', '2019-06-19 14:37:41', '20'),
+(39, 'four', '6', 'bapa1234', '9012398123', '2019-06-19 14:38:00', '20'),
+(40, 'four', '6', 'bapa1234', '1230997701', '2019-06-19 14:38:16', '20'),
+(41, 'two', '3', '12345', '9841204411', '2019-12-13 05:04:10', '10');
 
 -- --------------------------------------------------------
 
@@ -103,9 +108,11 @@ CREATE TABLE `tbl_cashcollection` (
 INSERT INTO `tbl_cashcollection` (`cash_id`, `address`, `two_wheelers_amount`, `four_wheelers_amount`, `total_amount`) VALUES
 (5, 'CityCenter', 220, 245, 465),
 (6, 'Sanima Bank', 25, 460, 485),
-(7, 'KIST College', 0, 0, 0),
+(7, 'KIST College', 10, 20, 30),
 (8, 'Nagpokhari  center', 0, 0, 0),
-(9, 'KIST College', 0, 0, 0);
+(9, 'KIST College', 10, 20, 30),
+(10, 'Patan Mandir', 0, 0, 0),
+(11, 'Kapan Mall', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -134,9 +141,10 @@ CREATE TABLE `tbl_parkingreg` (
 --
 
 INSERT INTO `tbl_parkingreg` (`park_location`, `park_address`, `park_vehicle`, `park_location_latitude`, `park_location_longitude`, `park_capacity_twowheelers`, `park_capacity_fourwheelers`, `park_id`, `parking_available`, `park_booked_twowheelers`, `park_booked_fourwheelers`, `park_rem_twowheelers`, `park_rem_fourwheelers`) VALUES
-('Sanima Bank', 'Naxal', 'FourWheeler TwoWheeler ', '56', '60', 25, 15, 3, 'yes', 5, 1, 20, 14),
-('Nagpokhari  center', 'Nagpokhari', 'FourWheeler TwoWheeler ', '12345', '54321', 3, 2, 5, 'yes', 4, 3, -1, -1),
-('KIST College', 'Kamalpokhari', 'FourWheeler TwoWheeler ', '20', '4321', 23, 4, 6, 'yes', 0, 0, 23, 4);
+('Sanima Bank', 'Naxal', 'FourWheeler TwoWheeler ', '56', '60', 25, 15, 3, 'yes', 6, 1, 19, 14),
+('KIST College', 'Kamalpokhari', 'FourWheeler TwoWheeler ', '20', '4321', 23, 4, 6, 'yes', 1, 4, 22, 0),
+('Patan Mandir', 'Patan', 'FourWheeler TwoWheeler ', '712368716387', '1293698721798', 14, 5, 7, 'yes', 0, 0, 14, 5),
+('Kapan Mall', 'Kapan', 'FourWheeler TwoWheeler ', '12345678', '87654321', 90, 40, 8, 'yes', 0, 0, 90, 40);
 
 -- --------------------------------------------------------
 
@@ -211,19 +219,19 @@ ALTER TABLE `tbl_adminllogin`
 -- AUTO_INCREMENT for table `tbl_booking`
 --
 ALTER TABLE `tbl_booking`
-  MODIFY `book_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `book_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `tbl_cashcollection`
 --
 ALTER TABLE `tbl_cashcollection`
-  MODIFY `cash_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `cash_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tbl_parkingreg`
 --
 ALTER TABLE `tbl_parkingreg`
-  MODIFY `park_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `park_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_securitylogin`

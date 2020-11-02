@@ -1,10 +1,13 @@
 <!-- header here -->
 <?php 
 include 'layouts/header.php';
+ $sec_id=$_GET['ref'];
+ $secUser=getSecurityUserById($conn, $sec_id);
+ //dump($adminUser);
 if (isset($_POST['submitbtn'])) {
-		 if(insertSecurity($conn, $_POST)){
-		 	//echo"user created successfully";
-		 	showMsg('User Created Successfully');
+		if(updateSecurityUser($conn, $_POST)){
+			//echo "User Updated SuccessFully";
+		 	showMsg('User Updated Successfully');
 		 	redirection('managesecurityuser.php');
 	}
 }
@@ -34,7 +37,7 @@ include 'layouts/sidebar.php';
 				<div class="page-header">
 					<div class="page-header-content">
 						<div class="page-title">
-							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Add Security </span></h4>
+							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Update Security User </span></h4>
 						</div>
 
 						
@@ -44,7 +47,7 @@ include 'layouts/sidebar.php';
 						<ul class="breadcrumb">
 							<li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
 
-							<li><a href="form_layout_vertical.html">Security Information</a></li>
+							<li><a href="form_layout_vertical.html">User Information</a></li>
 							
 						</ul>
 
@@ -80,28 +83,24 @@ include 'layouts/sidebar.php';
 									
 										<div class="form-group">
 											<label>First Name</label>
-											<input type="text" name="sec_fname" class="form-control" placeholder="Enter first name">
+											<input type="text" name="sec_fname" value="<?php echo $secUser['sec_fname'];?>" class="form-control" placeholder="Enter first name">
 										</div>
 										<div class="form-group">
 											<label>Last Name</label>
-											<input type="text" name="sec_lname" class="form-control" placeholder="Enter last name">
+											<input type="text" name="sec_lname" value="<?php echo $secUser['sec_lname'];?>" class="form-control" placeholder="Enter last name">
 										</div>
 										<div class="form-group">
 											<label>Email</label>
-											<input type="email" name="sec_email" class="form-control" placeholder="Enter email address">
+											<input type="email" name="sec_email" value="<?php echo $secUser['sec_email'];?>" class="form-control" placeholder="Enter email address">
 										</div>
-										<div class="form-group">
-											<label>Password</label>
-											<input type="password" name="sec_password" class="form-control" placeholder="Enter password">
-										</div>
+										
 										
 										<div class="form-group">
 											<label>Phone Number</label>
-											<input type="number" name="sec_phone" class="form-control" placeholder="Enter phone number">
+											<input type="number" name="sec_phoneno" value="<?php echo $secUser['sec_phoneno'];?>" class="form-control" placeholder="Enter phone number">
 										</div>
-										
 										<div class="form-group">
-											<label>Location</label>
+										<label>Location</label>
 											<select name="sec_location" class="form-control">
 												<optgroup label="Select Location">			
 												<?php
@@ -110,7 +109,6 @@ include 'layouts/sidebar.php';
 											
 										$location=$getParkingdata['park_location'];
 									 	$locationId=$getParkingdata['park_id']; 
-
 										 
 										?>									
 													<option value="<?php echo $locationId; ?>"><?php echo $location; ?> </option>
@@ -118,17 +116,13 @@ include 'layouts/sidebar.php';
 													
 												</optgroup>
 											</select>
-										</div> 
-					
-									
-
+									  
+										</div>
+										<input type="hidden" name="sec_id" value="<?php echo $secUser['sec_id']; ?>">
 					
 										<div class="text-right">
 											<button type="submit" name ="submitbtn" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
-										</div>
-
-
-										
+										</div>										
 									</div>
 								</div>
 							</form>
@@ -158,12 +152,7 @@ include 'layouts/sidebar.php';
 
 
 					<!-- 2 columns form -->
-					
-					<!-- /2 columns form -->
-
-
-					<!-- Footer -->
-				
+			
 					<!-- /footer -->
 
 				</div>
@@ -180,3 +169,4 @@ include 'layouts/sidebar.php';
 
 </body>
 </html>
+s

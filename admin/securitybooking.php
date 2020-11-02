@@ -1,6 +1,12 @@
 <?php
 session_start();
+
  include '../app/call.php';
+	if(!isset($_SESSION['security'] ['email']))
+		redirection('securitylogin.php');
+
+	
+
 if (isset($_POST['submitbtn'])) {
 		if(updateNumParkingInfo($conn, $_POST)){}
 		 if(insertBookingInfo($conn, $_POST)){		
@@ -154,10 +160,10 @@ if (isset($_POST['submitbtn'])) {
                                                    <div class="col-md-12">
 												<div class="form-group has-feedback">																					
 													
-													<input type="hidden" value="<?php echo $_SESSION['security'] ['locId']; ?>" name="location">
+													  <input name="location" type="hidden" id="location" value="<?php echo $_SESSION['security'] ['locId']; ?>" class="form-control">
 													<!--  <select name="location" required id="location" class="form-control">
 														
-													</select>-->
+													</select> -->
 													
 												</div>
 											</div>                                        
@@ -316,32 +322,7 @@ if (isset($_POST['submitbtn'])) {
 																	Check Out
 																</a></div></td>
 									  
-									<!--  <td class="text-center">
-										<ul class="icons-list">
-											<li class="dropdown">
-												<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-													<i class="icon-menu9"></i>
-												</a>
-
-												<ul class="dropdown-menu dropdown-menu-right">
-													<li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
-													<li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
-													<li><a href="#"><i class="icon-file-word"></i> Export to .doc</a></li>
-												</ul>
-											</li>
-										</ul>
-									</td>-->
-									<!--  <td><div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-																
-																<a href="editadminuser.php?ref=<?php echo $adminUser['adm_id'];?>" class="btn btn-xs btn-info">
-																	Edit
-																</a>
-
-																<a href="deleteadminuser.php?ref=<?php echo $adminUser['adm_id'];?>" onclick="return confirm('Really Deleting that user??');" class="btn btn-xs btn-danger">
-																	Delete
-																</a>
-
-															</div></td>-->
+									
 								</tr>
 						<?php endforeach; ?>
 							</tbody>

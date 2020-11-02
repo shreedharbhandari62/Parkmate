@@ -38,7 +38,7 @@
 									<a href="#"><i class="icon-user"></i> <span>Security</span></a>
 									<ul>
 										<li><a href="addsecurity.php">Add Security</a></li>
-										<li><a href="manageadminuser.php">Manage Users</a></li>
+										<li><a href="managesecurityuser.php">Manage Users</a></li>
 										
 									</ul>
 								</li>

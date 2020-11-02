@@ -274,7 +274,7 @@ function getLocation(vehicleType)
 
       $.ajax({
       type: 'post',
-      url: '../admin/getlocations.php',
+      url: '../admin/getlocations1.php', 
       data: {
         vehicleType:vehicleType,
        

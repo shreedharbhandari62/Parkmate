@@ -5,7 +5,7 @@ include '../app/call.php';
 
 $type = $_POST['vehicleType'];
 $optionText='<option value="">Select Location</option>';
-$locations = getAvailableParkingsByType($conn,$type);
+$locations = getAvailableParkingsByType1($conn,$type);
 
 if($locations)
 {

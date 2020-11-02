@@ -2,9 +2,9 @@
 session_start();
 $msg='';
 include '../app/call.php';
-if(checkAdminLogin()){
-	redirect('securitybooking.php');
-}
+
+if(isset($_SESSION['security'] ['email']))
+		redirection('securitybooking.php');
 if(isset($_POST['loginbtn'])){
 	$sec_email=$_POST['sec_email'];
 	$sec_password=md5($_POST['sec_password']);
@@ -13,12 +13,12 @@ if(isset($_POST['loginbtn'])){
 	$stmtLogin->bindParam('sec_password', $sec_password);
 	$stmtLogin->setFetchMode(PDO:: FETCH_ASSOC);
 	if($stmtLogin->execute()){
-		if($stmtLogin->rowcount()>0){
+		if($stmtLogin->rowcount()>0){ 
 			$adminInfo= $stmtLogin->fetch();
 			$_SESSION['security'] ['locId']=$adminInfo['sec_location'];			
 			$_SESSION['security'] ['email']=$adminInfo['sec_email'];
 			$_SESSION['security'] ['fname']=$adminInfo['sec_fname'];
-			redirect('securitybooking.php');
+			redirection('securitybooking.php');
 		}
 		else {
 			$msg="Invalid email or password";
